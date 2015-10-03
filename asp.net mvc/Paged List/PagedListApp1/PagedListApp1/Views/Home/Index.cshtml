@@ -1,0 +1,31 @@
+﻿@model PagedList.IPagedList<PagedListApp1.Models.Lucky>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Paged List Test</h2>
+        <p>
+            <table class="table">
+                <tr>
+                    <th>Guid</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Guid</td>
+                    </tr>
+                }
+            </table>
+
+
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+
+        </p>
+    </div>
+</div>
